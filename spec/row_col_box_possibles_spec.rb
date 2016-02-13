@@ -1,4 +1,4 @@
-require_relative '../possibilities'
+require_relative '../row_col_box_possibles'
 
 describe "possibilities" do
   let(:board){[{number: 9, row: 2, col: 3, box: 2},{number: 1, row: 2, col: 3, box: 2},{number: 3, row: 2, col: 3, box: 2}]}
