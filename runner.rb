@@ -1,23 +1,23 @@
-require_relative 'sudoku'
+require_relative 'square_possibles'
+require_relative 'board_complete'
+require_relative 'sudoku_data_structure'
 
-# The sudoku puzzles that your program will solve can be found
-# in the sudoku_puzzles.txt file.
-#
-# Currently, Line 18 defines the variable board_string to equal
-# the first puzzle (i.e., the first line in the .txt file).
-# After your program can solve this first puzzle, edit
-# the code below, so that the program tries to solve
-# all of the puzzles.
-#
-# Remember, the file has newline characters at the end of each line,
-# so we call String#chomp to remove them.
+#read in the sodoku
+#convert sodoku into array of hashes
+#iterate through each hash numbers key and check if == to nil
+#if == to nil check square posibilities and fill if possible is 1
+#return new board
 
 board_string = File.readlines('sudoku_puzzles.txt').first.chomp
-
-solved_board = solve(board_string)
-if solved?(solved_board)
-  puts "The board was solved!"
-  puts pretty_board(solved_board)
-else
-  puts "The board wasn't solved :("
+board = make_board(board_string)
+until board_complete?
+  board.each do |square|
+    if square.number == nil
+      #fill board with square possibles
+      board = square_possibles(square, board)
+      #fill board with square numbers
+      board = square_fill
+    end
 end
+
+return board # note : this will return as an array (need to complete display method)
